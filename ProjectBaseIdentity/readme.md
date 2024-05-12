@@ -36,3 +36,6 @@
 - User Lockout
 - Two factor authentication
 - Login with external provider (google, facebook)
+
+### Nguồn:
+- https://code-maze.com/asp-net-core-identity-series/
