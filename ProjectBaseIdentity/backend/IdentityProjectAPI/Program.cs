@@ -1,5 +1,7 @@
+using IdentityProjectAPI.Filters;
 using IdentityProjectAPI.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,16 @@ builder.Services.AddIdentity<User, IdentityRole>(opt =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add(typeof(ApiValidationFilterAttribute));
+});
 
 var app = builder.Build();
 
